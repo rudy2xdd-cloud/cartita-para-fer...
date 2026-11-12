@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Una cartita para ti ♡</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #ffe3ef, #e4e9ff, #eee0ff);
+      font-family: Georgia, serif;
+      text-align: center;
+      min-height: 100vh;
+      padding: 70px 15px;
+      margin: 0;
+    }
+
+    .escena h2 {
+      color: #a45c91;
+      font-size: 27px;
+    }
+
+    .subtitulo {
+      color: #8b78ae;
+      margin-bottom: 85px;
+    }
+
+    .sobre {
+      position: relative;
+      display: block;
+      width: 260px;
+      height: 170px;
+      margin: auto;
+      padding: 0;
+      border: none;
+      border-radius: 8px;
+      background: #e9a9c9;
+      cursor: pointer;
+      perspective: 800px;
+      box-shadow: 0 12px 25px #bd8ba955;
+    }
+
+    .carta {
+      position: absolute;
+      background: #fffafd;
+      width: 225px;
+      height: 145px;
+      left: 17px;
+      bottom: 8px;
+      padding: 12px;
+      border-radius: 5px;
+      color: #a45c91;
+      z-index: 2;
+      transition: transform 0.9s ease;
+      box-shadow: 0 2px 8px #00000012;
+    }
+
+    .carta h3 { color: #cc78a5; }
+
+    .carta p {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .bolsillo {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #f2b8d4, #d9b9ed);
+      clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+      border-radius: 5px;
+      z-index: 3;
+    }
+
+    .tapa {
+      position: absolute;
+      inset: 0;
+      background: #d89ac7;
+      clip-path: polygon(0 0, 100% 0, 50% 65%);
+      transform-origin: top;
+      transition: transform 0.7s ease;
+      z-index: 4;
+    }
+
+    .sello {
+      position: absolute;
+      left: 50%;
+      top: 58%;
+      transform: translate(-50%, -50%);
+      background: #fff0f7;
+      color: #c66c9f;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      z-index: 5;
+      transition: opacity 0.3s;
+    }
+
+    .sobre.abierto .tapa {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .sobre.abierto .carta {
+      transform: translateY(-110px);
+    }
+
+    .sobre.abierto .sello { opacity: 0; }
+
+    .instruccion {
+      margin-top: 85px;
+      color: #a45c91;
+      font-size: 14px;
+    }
+
+    .sobre:focus-visible {
+      outline: 3px solid #a45c91;
+      outline-offset: 6px;
+    }
+  </style>
+</head>
+<body>
+  <main class="escena">
+    <h2>Una cartita para ti ♡</h2>
+    <p class="subtitulo">Tengo algo que contarte...</p>
+
+    <button class="sobre" id="sobre" aria-expanded="false" aria-label="Abrir la carta">
+      <div class="carta">
+        <h3>Para Fer ♡</h3>
+        <p>
+          Hola, amorcito.
+          Hice este pequeño espacio
+          pensando en ti.
+        </p>
+        <p>Espero que te guste. ♡</p>
+      </div>
+      <div class="bolsillo"></div>
+      <div class="tapa"></div>
+      <div class="sello">♡</div>
+    </button>
+
+    <p class="instruccion" id="instruccion">Presiona el sobre para abrirlo 💌</p>
+  </main>
+
+  <script>
+    const sobre = document.getElementById("sobre");
+    const instruccion = document.getElementById("instruccion");
+
+    sobre.addEventListener("click", function () {
+      sobre.classList.toggle("abierto");
+      const estaAbierto = sobre.classList.contains("abierto");
+      sobre.setAttribute("aria-expanded", estaAbierto);
+      instruccion.textContent = estaAbierto
+        ? "Una cartita para ti ♡"
+        : "Presiona el sobre para abrirlo 💌";
+    });
+  </script>
+</body>
+</html>
